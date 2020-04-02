@@ -1,7 +1,7 @@
 # Личный проект «Большое путешествие» [![Build status][travis-image]][travis-url]
 
 * Студент: [Arturs Miglans](https://up.htmlacademy.ru/ecmascript/11/user/975927).
-* Наставник: `Неизвестно`.
+* Наставник: [Виталий Усик](https://htmlacademy.ru/profile/id235226).
 
 ---
 
