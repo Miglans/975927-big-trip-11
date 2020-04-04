@@ -2,6 +2,13 @@
 // amount of travel checkpoints
 const TRAVEL_CHECKPOINT_COUNT = 3;
 
+const siteHeaderElement = document.querySelector(`.trip-main`);
+const tripCostElement = siteHeaderElement.querySelector(`.trip-info`);
+const menuElement = siteHeaderElement.querySelector(`.trip-controls h2`);
+const filterElement = siteHeaderElement.querySelector(`.trip-controls`);
+const siteMainElement = document.querySelector(`.trip-events`);
+const pointList = siteMainElement.querySelector(`.trip-events__list`);
+
 // travel info
 const createTravelInfoTemplate = () => {
   return (
@@ -281,26 +288,38 @@ const createTravelPointTemplate = () => {
                 </li>`
   );
 };
-
+const init = () => {
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
 // header
-const siteHeaderElement = document.querySelector(`.trip-main`);
-render(siteHeaderElement, createTravelInfoTemplate(), `afterbegin`);
-const tripCostElement = siteHeaderElement.querySelector(`.trip-info`);
+
+
+render(siteHeaderElement, createTravelInfoTemplate());
+
 render(tripCostElement, createTravelCostTemplate());
-const menuElement = siteHeaderElement.querySelector(`.trip-controls h2`);
-render(menuElement, createSiteMenuTemplate(), `afterend`);
-const filterElement = siteHeaderElement.querySelector(`.trip-controls`);
+
+
+
+
+render(menuElement, createSiteMenuTemplate());
+
+
+
 render(filterElement, createFiltersTemplate());
 
 // main
-const siteMainElement = document.querySelector(`.trip-events`);
+
 render(siteMainElement, createSortTemplate());
+
 render(siteMainElement, createEditFormTemplate());
-render(siteMainElement, createTravelPointListTemplate());
-const pointList = siteMainElement.querySelector(`.trip-events__list`);
+
 for (let i = 0; i < TRAVEL_CHECKPOINT_COUNT; i++) {
   render(pointList, createTravelPointTemplate());
+  }
 }
+
+init();
+
+
+
