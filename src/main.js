@@ -3,11 +3,10 @@
 const TRAVEL_CHECKPOINT_COUNT = 3;
 
 const siteHeaderElement = document.querySelector(`.trip-main`);
-const tripCostElement = siteHeaderElement.querySelector(`.trip-info`);
 const menuElement = siteHeaderElement.querySelector(`.trip-controls h2`);
 const filterElement = siteHeaderElement.querySelector(`.trip-controls`);
 const siteMainElement = document.querySelector(`.trip-events`);
-const pointList = siteMainElement.querySelector(`.trip-events__list`);
+
 
 // travel info
 const createTravelInfoTemplate = () => {
@@ -288,38 +287,31 @@ const createTravelPointTemplate = () => {
                 </li>`
   );
 };
-const init = () => {
+
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
-// header
+
+const init = () => {
+
+  render(siteHeaderElement, createTravelInfoTemplate(), `afterbegin`);
+  const tripCostElement = siteHeaderElement.querySelector(`.trip-info`);
+  render(menuElement, createSiteMenuTemplate(), `afterend`);
+
+  render(tripCostElement, createTravelCostTemplate());
+  render(filterElement, createFiltersTemplate());
+  render(siteMainElement, createSortTemplate());
+  render(siteMainElement, createEditFormTemplate());
+  render(siteMainElement, createTravelPointListTemplate());
 
 
-render(siteHeaderElement, createTravelInfoTemplate());
+  const tripDaysElement = siteMainElement.querySelector(`.trip-days`);
+  render(tripDaysElement, createTravelPointListTemplate());
+  const tripEventList = tripDaysElement.querySelector(`.trip-events__list`);
 
-render(tripCostElement, createTravelCostTemplate());
-
-
-
-
-render(menuElement, createSiteMenuTemplate());
-
-
-
-render(filterElement, createFiltersTemplate());
-
-// main
-
-render(siteMainElement, createSortTemplate());
-
-render(siteMainElement, createEditFormTemplate());
-
-for (let i = 0; i < TRAVEL_CHECKPOINT_COUNT; i++) {
-  render(pointList, createTravelPointTemplate());
+  for (let i = 0; i < TRAVEL_CHECKPOINT_COUNT; i++) {
+    render(tripEventList, createTravelPointTemplate());
   }
-}
-
+};
 init();
-
-
 
